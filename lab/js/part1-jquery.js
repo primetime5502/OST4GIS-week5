@@ -13,6 +13,8 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
   ext: 'png'
 }).addTo(map);
 
+
+
 /* =====================
   Lab - jQuery
 
@@ -171,5 +173,77 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
-  // Do your stuff here
+
+$('#text-label1').text('First Name');
+$('#text-label2').text('Last Name');
+$('#text-label3').text('Nickname');
+$('#text-label4').text('Marker Description');
+$('#number-label').text('Age');
+$('#checkbox-label1').text('Bachelor Degree?' );
+$('#checkbox-label2').text('Married?');
+$('#color-label').text('Marker Color');
+$('#lat').text('Latitude');
+$('#long').text('Longitude');
+$('#text-label4').text('Marker Description');
+
+
+$('#text-input1').val('Deon');
+$('#text-input2').val('Provost');
+$('#text-input3').val('Deon');
+$('#text-input4').val(' Marker Description');
+$('#numeric-input').val(100);
+$( "#cbox-input1" ).prop("checked", true);
+$( "#cbox-input2" ).prop( "checked", true);
+$('#color-input').val('#C0C0C0');
+$('#lat-input').val(39.9522);
+$('#long-input').val(-75.1639);
+$('#text-input4').val('Marker Description');
+
+$('#text-input1').prop('disabled',false);
+$('#text-input2').prop('disabled',false);
+$('#text-input3').prop('disabled',false);
+$('#text-input4').prop('disabled',false);
+$('#text-input4').prop('disabled',false);
+$('#numeric-input').prop('disabled',false);
+$( "#cbox-input1" ).prop('disabled',false);
+$( "#cbox-input2" ).prop('disabled',false);
+
+$( "button").click(function() {
+  var formKeys =
+        {key1: $('#text-label1').text(),
+        key2: $('#text-label2').text(),
+        key3: $('#text-label3').text(),
+        key4: $('#number-label').text(),
+        key5: $('#checkbox-label1').text(),
+        key6: $('#checkbox-label2').text(),
+        key7: $('#color-label').text(),
+        key8: $('#lat').text(),
+        key9: $('#long').text(),
+        key10: $('#text-label4').text()
+      };
+
+    var formValues =
+          {value1: $('#text-input1').val(),
+          value2: $('#text-input2').val(),
+          value3: $('#text-input3').val(),
+          value4: $('#numeric-input').val(),
+          value5: $('#cbox-input1')[0].checked,
+          value6: $('#cbox-input2')[0].checked,
+          value7: $('#color-input').val(),
+          value8: $('#lat-input').val(),
+          value9: $('#long-input').val(),
+          value10: $('#text-input4').val()
+        };
+
+  var formKeys1 = _.values(formKeys);
+  var formValues1 = _.values(formValues);
+  var formObject = _.object(formKeys1,formValues1);
+
+L.circleMarker([$('#lat-input').val(),$('#long-input').val()], {fillColor: $('#color-input').val()}).addTo(map)
+.bindPopup($('#text-input4').val())
+.openPopup();
+
+console.log(formObject);
+});
+
 });
